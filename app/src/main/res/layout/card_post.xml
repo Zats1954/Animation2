@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".activity.FeedFragment">
+
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:src = "@drawable/post_avatar_drawable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/leftIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#FF000000"
+        android:textSize="14sp"
+        android:text=" "
+        app:layout_constraintBottom_toTopOf="@id/tvPublished"
+        app:layout_constraintEnd_toStartOf="@id/ivMenu"
+        app:layout_constraintStart_toEndOf="@id/ivAvatar"
+        app:layout_constraintTop_toTopOf="@id/ivAvatar"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvPublished"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#FFFFFF"
+        android:textColor="#FF000000"
+        android:text=" "
+        app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
+        app:layout_constraintEnd_toEndOf="@id/tvAuthor"
+        app:layout_constraintStart_toEndOf="@id/ivAvatar"
+        app:layout_constraintTop_toBottomOf="@id/tvAuthor" />
+
+    <ImageView
+        android:id="@+id/ivMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/menuIcon"
+        app:layout_constraintBottom_toBottomOf="@id/tvPublished"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toEndOf="@id/tvAuthor"
+        app:layout_constraintTop_toTopOf="@id/tvAuthor"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="ivAvatar,tvPublished,ivMenu" />
+
+    <ImageView
+        android:id="@+id/ivDivider"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/divider"
+        android:src="@drawable/ic_separator"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/tvContent"
+        app:layout_constraintEnd_toEndOf="@id/barrier"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/barrier"
+        app:layout_constraintTop_toBottomOf="@id/tvPublished" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_spacing"
+        android:autoLink="web"
+        android:text=" "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+    <ImageButton
+        android:id="@+id/ivVideo"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/ic_youtube"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvContent"
+        />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foreground="#FFFFFF"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="ivVideo, tvContent" />
+
+    <ImageView
+        android:id="@+id/ivDivider1"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:contentDescription="@string/divider"
+        android:src="@drawable/ic_separator"
+        app:layout_constraintBottom_toTopOf="@id/ivLike"
+        app:layout_constraintEnd_toEndOf="@id/barrier"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/barrier"
+        app:layout_constraintTop_toBottomOf="@id/ivVideo" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ivLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:checkable="true"
+        android:textColor="#000000"
+        android:contentDescription="@string/menuIcon"
+        style = "@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        app:icon="@drawable/ic_like_selector"
+        app:iconTint="@color/ic_like_tint"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/ivVideo"
+ />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ivShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:contentDescription="@string/menuIcon"
+        android:textColor="#000000"
+        style = "@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        app:icon="@drawable/ic_baseline_share_24"
+        app:iconTint="#000000"
+        app:layout_constraintTop_toTopOf="@id/ivLike"
+        app:layout_constraintBottom_toBottomOf="@id/ivLike"
+        app:layout_constraintStart_toEndOf="@id/ivLike" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ivVisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/menuIcon"
+        android:textColor="#000000"
+        style = "@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        app:icon="@drawable/ic_baseline_visibility_24"
+        app:iconTint="#000000"
+        app:layout_constraintTop_toTopOf="@id/ivLike"
+        app:layout_constraintBottom_toBottomOf="@id/ivLike"
+        app:layout_constraintStart_toEndOf="@id/ivShare" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="ivShare,ivVisible" />
+
+    <ImageView
+        android:id="@+id/ivDivider2"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:contentDescription="@string/divider"
+        android:src="@drawable/ic_separator1"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/ivVisible"
+        app:layout_constraintStart_toStartOf="@id/barrier2"
+        app:layout_constraintEnd_toEndOf="@id/barrier2"   />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

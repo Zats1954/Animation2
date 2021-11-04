@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Nmedia</string>
+    <string name="leftIcon">left icon</string>
+    <string name="menuIcon">menu icon</string>
+    <string name="divider">divider</string>
+    <string name="chooser_share_post" translatable="false">choose app for share</string>
+    <string name="app_not_found_error" translatable="false">App_not_found_error</string>
+    <string name="description_post_save" translatable="false">save post</string>
+    <string name="youtubeAddress" translatable="false">Input youtube address</string>
+    <string name="videoTemplate" translatable="false">https://youtube.com</string>
+    <string name="channel_remote_name"  translatable="false">Server notifications</string>
+    <string name="channel_remote_description"  translatable="false">Notifications from remote server</string>
+    <string name="google_play_unavailable"  translatable="false">Notification can\'t go</string>
+    <string name="msg_token_fmt" translatable="false">"msg_token_fmt"</string>
+    <string name="empty_posts">There are no posts.\nIf you create a new post, it will appear here</string>
+    <string name="retry_loading">Retry</string>
+    <string name="error_loading">Something went wrong. Try again later</string>
+</resources>
