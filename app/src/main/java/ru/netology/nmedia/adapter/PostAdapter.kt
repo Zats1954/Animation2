@@ -1,5 +1,7 @@
 package ru.netology.nmedia.adapter
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +33,22 @@ class PostAdapter(
             onInteractionListener)
     }
 
+    override fun onBindViewHolder(
+        holder: PostViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+  if(payloads.isEmpty()){
+      onBindViewHolder(holder, position)
+  } else {
+       payloads.forEach{
+           if(it is PostPayload){
+             holder.bind(it)
+           }
+       }
+  }
+    }
+
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = getItem(position)
         holder.bind(post)
@@ -42,9 +60,34 @@ class PostViewHolder(
     private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
+    fun bind(payload: PostPayload){
+ /*!!!*/ var i = 0
+        payload.liked?.also { liked ->
+            binding.ivLike.setIconResource(
+                if(liked) R.drawable.ic_heart2
+                 else R.drawable.ic_heart
+            )
+            binding.ivLike.text = if(liked) "1" else "0"
+            if(liked){
+/*!!!*/                print ("i if ${++i} ")
+                ObjectAnimator.ofPropertyValuesHolder(
+                    binding.ivLike,
+                PropertyValuesHolder.ofFloat(View.SCALE_X, 1.0F, 1.25F,1.0F, 1.25F),
+                PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.0F, 1.25F,1.0F, 1.25F))
+
+            } else{
+/*!!!*/                print ("i_else ${++i} ")
+                ObjectAnimator.ofFloat( binding.ivLike,View.ROTATION, 0F, 360F)
+            }.apply{
+                repeatCount = 100
+
+            }.start()
+        }
+    }
+
     fun bind(post: Post) {
         binding.apply {
-            println(post.id)
+/*!!!*/            println("post.id ${post.id}")
             tvAuthor.text = post.author
             val pattern = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
             tvPublished.text = pattern.format(post.published)
@@ -54,6 +97,7 @@ class PostViewHolder(
             ivLike.isChecked = post.likedByMe
             ivLike.text = post.likes.toString()
             ivVideo.visibility = post.videoVisibility
+            tvId.text = post.id.toString()
 
             ivMenu.setOnClickListener {
                 PopupMenu(it.context, it)
@@ -117,7 +161,16 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
         return oldItem.id == newItem.id
     }
 
+    override fun getChangePayload(oldItem: Post, newItem: Post): Any =
+        PostPayload(
+            newItem.likedByMe.takeIf { oldItem.likedByMe != it }
+        )
+
     override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
         return oldItem == newItem
     }
 }
+
+data class PostPayload(
+    val liked: Boolean? = null
+)
